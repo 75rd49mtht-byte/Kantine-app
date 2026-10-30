@@ -1,0 +1,16 @@
+{
+  "name": "kantine-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kantinediensten Arnhemse Boys — de app en de controles erop",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "rapport": "playwright show-report",
+    "start": "node tools/serve.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
+  }
+}

@@ -1,0 +1,41 @@
+name: Tests
+
+# Draait bij elke wijziging die je naar GitHub stuurt, en met de knop
+# "Run workflow" op het tabblad Actions.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Controles op de app
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Code ophalen
+        uses: actions/checkout@v4
+
+      - name: Node installeren
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Pakketten installeren
+        run: npm ci
+
+      - name: Testbrowser installeren
+        run: npx playwright install --with-deps chromium
+
+      - name: Tests draaien
+        run: npm test
+
+      - name: Rapport bewaren
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: testrapport
+          path: playwright-report/
+          retention-days: 14
