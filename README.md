@@ -72,10 +72,22 @@ De map `site/` gaat als geheel naar Cloudflare Pages. Zie `HOSTING.md`.
 Let op: de tests draaien náást de uitrol, niet ervóór. Een mislukte test
 houdt een nieuwe versie dus niet tegen — je krijgt er wel bericht van.
 
+## Waar de app online staat
+
+`kantine-app.pages.dev` — Cloudflare Pages, gekoppeld aan deze repo. Een push
+naar `main` rolt vanzelf uit.
+
+Er draaien nog oudere kopieën van dezelfde app op andere adressen, die wel
+dezelfde database gebruiken. Die horen weg: zolang ze bestaan kan iemand per
+ongeluk in een versie werken waarin fouten zitten die hier allang gerepareerd
+zijn.
+
 ## Nog te doen
 
-- De huidige `site/` staat nog niet online; de live versie is ouder.
-- `sql/rooster-najaar-2026.sql` is nog niet uitgevoerd.
-- Het subdomein `kantine.arnhemseboys.nl` is nog niet gekoppeld.
+- `sql/rooster-najaar-2026.sql` is nog niet uitgevoerd, en de datums erin zijn
+  verlopen — die moeten eerst opnieuw gezet worden.
+- Het subdomein `kantine.arnhemseboys.nl` is nog niet gekoppeld. Het DNS van
+  `arnhemseboys.nl` zit niet bij Netlify of Cloudflare maar bij de hoster van
+  de clubsite; daar is één CNAME-regel nodig.
 - Een rol intrekken verwijdert nu alleen de profielregel, niet het account
   zelf. Daar is een serverfunctie voor nodig.
